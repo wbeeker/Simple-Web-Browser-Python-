@@ -4,4 +4,4 @@ MyWebBrowser is a simple lightweight browser built with Python using the PyQt5 l
 
 The interface is simple yet functional, making it a great starting point for learning how to embed web content in desktop applications using PyQt. With support for JavaScript and responsive controls like Enter-key URL navigation and dynamic URL bar updates, MyWebBrowser serves both as an educational project and a foundation for building more advanced browsing tools.
 
-
+<img width="1197" alt="Image" src="https://github.com/user-attachments/assets/68def39e-1503-401f-af35-8f8ab9cd69cc" />
