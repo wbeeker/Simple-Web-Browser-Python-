@@ -23,7 +23,7 @@ class MyWebBrowser(QMainWindow):
         central_widget.setLayout(main_layout)
 
         nav_bar = QHBoxLayout()
-        self.url_bar = QTextEdit()
+        self.url_bar = QLineEdit()
         self.url_bar.setMaximumHeight(30)
 
         self.go_btn = QPushButton("Go")
@@ -35,10 +35,18 @@ class MyWebBrowser(QMainWindow):
         self.forward_btn = QPushButton("Forward")
         self.forward_btn.setMinimumHeight(30)
 
+        self.refresh_btn = QPushButton("Refresh")
+        self.refresh_btn.setMinimumHeight(30)
+
+        self.home_btn = QPushButton("Home")
+        self.home_btn.setMinimumHeight(30)
+
         nav_bar.addWidget(self.url_bar)
         nav_bar.addWidget(self.go_btn)
         nav_bar.addWidget(self.back_btn)
         nav_bar.addWidget(self.forward_btn)
+        nav_bar.addWidget(self.refresh_btn)
+        nav_bar.addWidget(self.home_btn)
 
         self.browser = QWebEngineView()
         self.browser.setPage(CustomWebPage(self.browser))
@@ -46,10 +54,13 @@ class MyWebBrowser(QMainWindow):
         self.browser.setUrl(QUrl("http://google.com"))
 
         self.go_btn.clicked.connect(lambda: self.navigate(self.url_bar.toPlainText()))
+        self.url_bar.returnPressed.connect(lambda: self.navigate(self.url_bar.text()))
         self.back_btn.clicked.connect(self.browser.back)
         self.forward_btn.clicked.connect(self.browser.forward)
-        self.browser.urlChanged.connect(self.update_url_bar)
+        self.refresh_btn.clicked.connect(self.browser.reload)
+        self.home_btn.clicked.connect(lambda: self.navigate("https://google.com"))
 
+        self.browser.urlChanged.connect(self.update_url_bar)
 
         main_layout.addLayout(nav_bar)
         main_layout.addWidget(self.browser)
